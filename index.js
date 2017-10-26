@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native';
-import route from './route/drawerIndex'
+import route from './route/index'
 
 AppRegistry.registerComponent('androidDemo', () => route);

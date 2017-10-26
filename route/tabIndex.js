@@ -4,15 +4,9 @@
 
 
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import { TabNavigator } from 'react-navigation';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-
-const HomeScreen = () => (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Home Screen</Text>
-    </View>
-);
+import HomeScreen from '../page/home'
 
 const ProfileScreen = () => (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -24,12 +18,11 @@ const RootTabs = TabNavigator({
     Home: {
         screen: HomeScreen,
         navigationOptions: {
-            tabBarLabel: 'Home',
+            tabBarLabel: '文章',
             tabBarIcon: ({ tintColor, focused }) => (
-                <Ionicons
-                    name={focused ? 'ios-home' : 'ios-home-outline'}
-                    size={26}
-                    style={{ color: tintColor }}
+                <Image
+                    source={require('../assets/arthome.png')}
+                    style={[styles.icon, {tintColor: tintColor}]}
                 />
             ),
         },
@@ -37,15 +30,28 @@ const RootTabs = TabNavigator({
     Profile: {
         screen: ProfileScreen,
         navigationOptions: {
-            tabBarLabel: 'Profile',
+            tabBarLabel: '音乐厅',
             tabBarIcon: ({ tintColor, focused }) => (
-                <Ionicons
-                    name={focused ? 'ios-person' : 'ios-person-outline'}
-                    size={26}
-                    style={{ color: tintColor }}
+                <Image
+                    source={require('../assets/music.png')}
+                    style={[styles.icon, {tintColor: tintColor}]}
                 />
             ),
         },
+    },
+}, {
+        tabBarPosition: 'bottom',
+        animationEnabled: true,
+        tabBarOptions: {
+            activeTintColor: '#e92830',
+            showIcon: true
+        },
+});
+
+const styles = StyleSheet.create({
+    icon: {
+        width: 24,
+        height: 24,
     },
 });
 
