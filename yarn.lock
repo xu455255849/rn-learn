@@ -2797,7 +2797,7 @@ lodash.templatesettings@^3.0.0:
     lodash._reinterpolate "^3.0.0"
     lodash.escape "^3.0.0"
 
-lodash@4.17.4, lodash@^4.14.0, lodash@^4.16.6, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.3.0, lodash@^4.6.1:
+lodash@4.17.4, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.16.6, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.3.0, lodash@^4.6.1:
   version "4.17.4"
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -3634,6 +3634,17 @@ react-native-menu@^0.23.0:
     prop-types "^15.5.10"
     react-timer-mixin "^0.13.3"
 
+react-native-simple-markdown@^1.0.60-rc.3:
+  version "1.0.60-rc.3"
+  resolved "https://registry.npmjs.org/react-native-simple-markdown/-/react-native-simple-markdown-1.0.60-rc.3.tgz#80c772b22eb32fb43b9f23620f6c876aef06d721"
+  dependencies:
+    lodash "^4.15.0"
+    simple-markdown "git://github.com/CharlesMangwa/simple-markdown.git"
+
+react-native-sound@^0.10.4:
+  version "0.10.4"
+  resolved "https://registry.npmjs.org/react-native-sound/-/react-native-sound-0.10.4.tgz#242286558f457e023dbed42e8c6cbe52cfd313d4"
+
 react-native-swipeout@^2.2.2:
   version "2.3.1"
   resolved "https://registry.npmjs.org/react-native-swipeout/-/react-native-swipeout-2.3.1.tgz#f33e852b46d2cddb878a431a1c696428e3d9d2a5"
@@ -4235,6 +4246,10 @@ shellwords@^0.1.0:
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://registry.npmjs.org/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
+
+"simple-markdown@git://github.com/CharlesMangwa/simple-markdown.git":
+  version "0.1.1"
+  resolved "git://github.com/CharlesMangwa/simple-markdown.git#33d963c760b8196bee01b1a5ba9974bc7f669af1"
 
 simple-plist@^0.2.1:
   version "0.2.1"

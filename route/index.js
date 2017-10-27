@@ -6,16 +6,14 @@ import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import HomeScreen from '../page/home'
+import MusicScreen from '../page/music'
+import PhotoScreen from '../page/photo'
+import SettingScreen from '../page/setting'
+import ArticleScreen from '../page/article'
 
 const DetailsScreen = () => (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Details Screen</Text>
-    </View>
-);
-
-const ProfileScreen = () => (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Profile Screen</Text>
     </View>
 );
 
@@ -32,8 +30,8 @@ const RootTabs = TabNavigator({
             ),
         },
     },
-    Profile: {
-        screen: ProfileScreen,
+    Music: {
+        screen: MusicScreen,
         navigationOptions: {
             tabBarLabel: '音乐厅',
             tabBarIcon: ({ tintColor, focused }) => (
@@ -44,12 +42,42 @@ const RootTabs = TabNavigator({
             ),
         },
     },
+    Photo: {
+        screen: PhotoScreen,
+        navigationOptions: {
+            tabBarLabel: '图库',
+            tabBarIcon: ({ tintColor, focused }) => (
+                <Image
+                    source={require('../assets/photo.png')}
+                    style={[styles.icon, {tintColor: tintColor}]}
+                />
+            ),
+        },
+    },
+    Setting: {
+        screen: SettingScreen,
+        navigationOptions: {
+            tabBarLabel: '我的',
+            tabBarIcon: ({ tintColor, focused }) => (
+                <Image
+                    source={require('../assets/setting.png')}
+                    style={[styles.icon, {tintColor: tintColor}]}
+                />
+            ),
+        },
+    },
 }, {
     tabBarPosition: 'bottom',
     animationEnabled: true,
     tabBarOptions: {
         activeTintColor: '#e92830',
-        showIcon: true
+        showIcon: true,
+        indicatorStyle: {
+            height: 0
+        },
+        style: {
+            backgroundColor: '#70e4e9'
+        }
     },
 });
 
@@ -60,11 +88,12 @@ const styles = StyleSheet.create({
     },
 });
 
+
 const RootNavigator = StackNavigator({
     Home: {
         screen: RootTabs,
         navigationOptions: {
-            title: 'My Chats',
+            header: null
         },
     },
     Details: {
@@ -73,6 +102,10 @@ const RootNavigator = StackNavigator({
             title: ' Chats',
         },
     },
+    Article: {
+        screen: ArticleScreen
+    }
+    
 });
 
 export default RootNavigator;

@@ -1,57 +1,68 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button, Image, FlatList } from 'react-native';
-import { DatePicker, List } from 'antd-mobile';
-//import Tab from '../route/tabIndex'
-import request from 'superagent'
+import { Toast, SearchBar } from 'antd-mobile';
 
+import request from 'superagent'
 
 export default class HomeScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
             list: [],
-            date: new Date(),
-            isToggleOn: true,
-            isLoggedIn: false
+            page: 1,
+            searchPara: ''
         };
-        
-        
     }
     
     componentDidMount() {
-        console.log(this.props)
-        
+  
+    }
+    
+    reached = ()=> {
         request
         .get('http://106.14.205.222/article/list')
-        .query({ page: 1, limit: 10, isActive: 1})
+        .query({ page: this.state.page, limit: 10, isActive: 1})
         .end((err, res) => {
             if (err) throw err
-            res.body.list.forEach( (it, i)=> {
-                var path = 'http://106.14.205.222' + it.imgPath.slice(6)
-                res.body.list[i].imgPath = path
-            })
-            console.log(res.body.list)
-            this.setState({
-                list: res.body.list
-            })
+            this.state.page++
+            if (res.body.list.length == 0) {
+                Toast.info('没有更多数据了哦', 1);
+            } else {
+                res.body.list.forEach( (it, i)=> {
+                    var path = 'http://106.14.205.222' + it.imgPath.slice(6)
+                    res.body.list[i].imgPath = path
+                })
+                var result = this.state.list.concat(res.body.list)
+    
+                Toast.loading('加载中...', 1, () => {
+                    this.setState({
+                        list: result
+                    })
+                });
+            }
         });
-        
-    }
+    };
     
-    componentWillUnmount() {
-    
-    }
-    
-    
+    search = ()=> {
+        Toast.info('搜索功能暂未开发', 1);
+    };
     
     render() {
         const { navigation } = this.props
         return (
             <View style={styles.container}>
+                <View>
+                    <SearchBar
+                        placeholder="搜索、需要新建一个screen搜索，解决底部顶起问题"
+                        onSubmit={this.search}
+                    />
+                </View>
                 <FlatList
                     data={this.state.list}
+                    onEndReachedThreshold={0.2}
+                    onEndReached={this.reached}
                     renderItem={({item}) => (
-                        <View style={{ flexDirection: 'row',  alignItems: 'center', justifyContent: 'center', height: 80, marginBottom: 20 }}>
+                        <View style={{ flexDirection: 'row', padding: 20, marginBottom: 10 }}>
                             <View style={{ flex: 2, height: 80}} >
                                <Image
                                     source={{ uri: item.imgPath }}
@@ -64,16 +75,14 @@ export default class HomeScreen extends Component {
                             </View>
                             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', height: 80,}} >
                                 <Button
-                                    color="#5CA4EE"
-                                    onPress={() => navigation.navigate('Profile')}
+                                    color="#70e4e9"
+                                    onPress={() => navigation.navigate('Article', {id: item._id})}
                                     title="阅读"
                                 />
                             </View>
-                            
                         </View>
                     )}
                 />
-            
             </View>
         );
     }
@@ -83,18 +92,11 @@ export default class HomeScreen extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 20,
-        paddingLeft: 20,
-        paddingRight: 20
-    
     },
-    logo: {
-    
-        },
     title: {
         overflow: 'hidden',
         fontWeight: 'bold',
-        color: '#4e58ee',
+        color: '#ee69e0',
         paddingBottom: 5
     },
    
