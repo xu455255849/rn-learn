@@ -21,7 +21,9 @@ export default class SettingScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-           
+                <View style={{backgroundColor: 'blue', height: 50}}></View>
+                <View style={{ flex: 2, backgroundColor: 'red', height: 50}}></View>
+                <View style={{backgroundColor: 'yellow', height: 50}}></View>
             </View>
         );
     }

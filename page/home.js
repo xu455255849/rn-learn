@@ -66,7 +66,7 @@ export default class HomeScreen extends Component {
                             <View style={{ flex: 2, height: 80}} >
                                <Image
                                     source={{ uri: item.imgPath }}
-                                    style={{ height: 80, marginRight: 10, resizeMode:Image.resizeMode.contain }}
+                                    style={{ height: 80, marginRight: 10, resizeMode: 'contain' }}
                                />
                             </View>
                             <View style={{ flex: 4, height: 80, }} >
