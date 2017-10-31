@@ -11,12 +11,6 @@ import PhotoScreen from '../page/photo'
 import SettingScreen from '../page/setting'
 import ArticleScreen from '../page/article'
 
-const DetailsScreen = () => (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Details Screen</Text>
-    </View>
-);
-
 const RootTabs = TabNavigator({
     Home: {
         screen: HomeScreen,
@@ -94,12 +88,6 @@ const RootNavigator = StackNavigator({
         screen: RootTabs,
         navigationOptions: {
             header: null
-        },
-    },
-    Details: {
-        screen: DetailsScreen,
-        navigationOptions: {
-            title: ' Chats',
         },
     },
     Article: {

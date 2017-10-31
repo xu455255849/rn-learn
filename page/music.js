@@ -31,12 +31,7 @@ export default class MusicScreen extends Component {
     }
     
     componentDidMount() {
-        // Play the sound with an onEnd callback
-        yu.play((success) => {
-            if (success) {
-                alert('successfully finished playing');
-            }
-        });
+    
     }
     
     play = ()=> {
@@ -78,6 +73,7 @@ export default class MusicScreen extends Component {
     rotate () {
         if (this.state.play) {
             this.state.rotate.setValue(0);
+            
             Animated.timing(this.state.rotate, {
                 toValue: 1,
                 duration: 10000,
